@@ -1,0 +1,76 @@
+﻿@model DashboardViewModel
+<div class="col-lg-3 col-md-6">
+    <div class="panel dashboard-wg" style="background: linear-gradient(to right, #373b44, #4286f4) !important;">
+        <div class="panel-heading ">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-building-o fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">@(Model.SummaryUnit.Total)</div>
+                    <div>Total Units</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="panel dashboard-wg" style="background: linear-gradient(to right, #a96b6b, #5b472b) !important;">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-star fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">@(Model.SummaryUnit.Available)</div>
+                    <div>ว่าง</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="panel dashboard-wg" style="background: linear-gradient(to right, #a86008, #ffba56) !important;">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-shopping-cart fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">@(Model.SummaryUnit.Booking)</div>
+                    <div>จอง</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="panel dashboard-wg " style="background: linear-gradient(to right, #a80808, #ff7d56) !important;">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-dollar fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">@(Model.SummaryUnit.Payment)</div>
+                    <div>ชำระเงินแล้ว </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6">
+    <div class="panel dashboard-wg" style="background: linear-gradient(to right, #0a504a, #9e9e9e) !important;">
+        <div class="panel-heading">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-window-close fa-5x"></i>
+                </div>
+                <div class="col-xs-9 text-right">
+                    <div class="huge">@(Model.SummaryUnit.Close)</div>
+                    <div>ปิดการจอง</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

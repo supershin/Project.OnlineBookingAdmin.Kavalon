@@ -1,0 +1,62 @@
+﻿@model ProjectRegisterQuota
+
+<div class="modal fade" id="quota-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <form id="form-quota" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Project Quota</h4>
+                </div>
+                <div class="modal-body">                    
+                    <div class="row form-group">
+                        <label class="col-md-12 control-label required">Project</label>
+                        <div class="col-md-12">
+                            @if (Model.ID == 0)
+                            {
+                                <select asp-for="ProjectID" class="form-control">
+                                    @foreach (var item in (List<SelectListItem>)ViewBag.ProjectSelectList)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                </select>
+                            }
+                            else
+                            {
+                                <input type="hidden" name="ProjectID" value="@Model.ProjectID" />
+                                <input type="text" class="form-control" value="@Model.ProjectName" disabled />
+                            }
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        @if (Model.ID != 0)
+                        {
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <label class="col-md-12 control-label ">Unit Booked</label>
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" value="@Model.UseQuota.AsInt().ToString("#,##0")" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        }                        
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label class="col-md-12 control-label required">Total Quota</label>
+                                <div class="col-md-12">
+                                    <input type="text" name="Quota" class="integer  form-control" value="@Model.Quota.AsInt().ToString("#,##0")" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="auto-close btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="btn-save-quota" type="submit" class="btn btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

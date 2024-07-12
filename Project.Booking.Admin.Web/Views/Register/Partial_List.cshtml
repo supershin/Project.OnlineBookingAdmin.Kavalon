@@ -1,0 +1,60 @@
+﻿@model IEnumerable<RegisterViewModel>
+<table class="table table-striped table-bordered table-hover" id="table-register">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Type</th>
+            @*<th>Last Name</th>*@
+            <th>Email</th>
+            <th>Mobile</th>
+            <th class="text-center">Active</th>
+            @*<th>Citizen ID</th>*@
+            <th>Last Update</th>
+            <th>Last SigIn</th>
+            <th>Last SignOut</th>
+            <th class="text-center">#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.IsOnline)
+                    {
+                        <button  class="btn btn-xs btn-success">online</button>
+                    }
+                    else
+                    {
+                        <button   class="btn btn-xs btn-danger">offline</button>
+                    }
+                </td>
+                <td>@item.FirstName</td>
+                <td>@item.RegisterTypeName</td>
+                @*<td>@item.LastName</td>*@
+                <td>@item.Email</td>
+                <td>@item.Mobile</td>
+                <td class="text-center">
+                    <div>
+                        @if (item.FlagActive)
+                        {
+                            <button style="width:50px;"  class="btn btn-xs btn-success">Yes</button>
+                        }
+                        else 
+                        {
+                            <button style="width:50px;" class="btn btn-xs btn-danger">No</button>
+                        }
+                    </div>
+                </td>
+                @*<td>@item.CitizenID</td>*@
+                <td>@item.LastUpdateDate.AsDate().ToString("yyy-MM-dd")</td>
+                <td>@item.LastSignInDate.ToStringDateTime()</td>
+                <td>@item.LastSignOutDate.ToStringDateTime()</td>
+                <td class="text-center">
+                    <a class="btn btn-xs btn-warning" asp-controller="Register" asp-action="Manage" asp-route-id="@item.ID">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

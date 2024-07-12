@@ -1,0 +1,31 @@
+﻿@model DashboardViewModel
+@inject IJsonHelper Json;
+@{
+    ViewData["Title"] = "Dashboard";
+    ViewBag.Active = "dashboard";
+    Layout = "~/Views/Shared/_LayoutSitePage.cshtml";
+}
+<link href="~/css/dashboard.css" rel="stylesheet" asp-append-version="true" />
+
+<link href="~/lib/selectize.js-master/css/selectize.bootstrap4.css" rel="stylesheet" />
+<script src="~/lib/selectize.js-master/js/standalone/selectize.min.js"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">@ViewData["Title"]</h3>
+    </div>
+</div>
+<div class="row" style="margin-bottom:10px;">
+    <partial name="Partial_Search" />
+</div>
+<div class="row" id="div-partial-section1">
+    <partial name="Partial_Section_1" />
+</div>
+@section scripts{
+    <script src="~/js/pages/dashboard.js" asp-append-version="true" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            dashboard.init();
+        });
+    </script>
+}
+

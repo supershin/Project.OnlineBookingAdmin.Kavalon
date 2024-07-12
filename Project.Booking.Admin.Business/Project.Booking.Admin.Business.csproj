@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Project.Booking.Admin.Data\Project.Booking.Admin.Data.csproj" />
+    <ProjectReference Include="..\Project.Booking.Admin.Model\Project.Booking.Admin.Model.csproj" />
+    <ProjectReference Include="..\Project.Booking.Admin\Project.Booking.Admin.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,99 @@
+﻿@model TransferPayment
+
+<div class="modal fade" id="modal-payment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <form id="form-payment" method="post">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <input type="hidden" name="ProjectID" value="@Model.ProjectID" />
+                <input type="hidden" name="RegisterID" value="@Model.RegisterID" />
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Transfer Payment</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row form-group">
+                        <label class="col-md-12 control-label">Project</label>
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" value="@Model.ProjectName" disabled />
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label class="col-md-12 control-label ">Unit Booked</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" value="@Model.UseQuota.ToString("#,##0")" disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label class="col-md-12 control-label">Total Quota</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="integer  form-control" value="@Model.TotalQuota.ToString("#,##0")" disabled />
+                                </div>
+                            </div>
+                        </div>
+                    </div>                   
+                    <div class="row form-group">                       
+                        <div class="col-md-12">
+                            <div class="row">
+                                <label class="col-md-12 control-label">File</label>
+                                <div class="col-md-12">
+                                    <div class="sp-title">
+                                        <span class="sp-payment">
+                                            <a href="@Model.UrlFile" class="btn btn-sm btn-info" target="_blank">@Model.FileName</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label class="col-md-12 control-label ">Amount</label>
+                                <div class="col-md-12">
+                                    <input type="text" class="form-control" value="@Model.Amount.AsDecimal().ToString("#,##0.00")" disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label class="col-md-12 control-label required">Approve Amount(฿)</label>
+                                <div class="col-md-12">
+                                    <input type="text" name="ApproveAmount" class="decimal  form-control" value="@Model.ApproveAmount.AsDecimal().ToString("#,##0.00")" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label class="col-md-12 control-label ">Status</label>
+                                <div class="col-md-12">
+                                    <select name="StatusID" class="form-control" asp-items="@(ViewBag.VerifyStatusList as List<SelectListItem>)" asp-for="@Model.StatusID"></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <label class="col-md-12 control-label required">Quota</label>
+                                <div class="col-md-12">
+                                    <input type="text" name="Quota" class="integer  form-control" value="@Model.Quota.AsInt().ToString("#,##0")" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="auto-close btn btn-default" data-dismiss="modal">Close</button>
+                    <button id="btn-save-payment" type="submit" class="btn btn-success">Save changes</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

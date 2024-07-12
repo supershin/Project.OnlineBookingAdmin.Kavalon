@@ -1,0 +1,68 @@
+﻿@model List<UnitViewModel>
+@{
+    ViewData["Title"] = "Unit";
+    ViewBag.Active = "Unit";
+    Layout = "~/Views/Shared/_LayoutSitePage.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">@ViewData["Title"]</h3>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Search
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <label class="col-lg-2 text-right control-label">Project</label>
+                    <div class="col-lg-3">
+                        <select id="ProjectID" class="form-control">
+                            @foreach (var item in (List<SelectListItem>)ViewBag.ProjectSelectList)
+                            {
+                                <option value="@item.Value">@item.Text</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-lg-7">
+                        <input id="btn-search" type="button" class="btn btn-info" value="Search" />
+                        <a id="btn-matrix" href="#" target="_blank" class="btn btn-warning" >Matrix</a>
+                    </div>
+                </div>
+            </div>           
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                Unit List
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body" id="div-unit-list">
+                @*<partial name="Partial_Unit_List" model="Model" />*@
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+@section scripts{
+    <script src="~/js/pages/unit.js" asp-append-version="true" type="text/javascript"></script>
+    <script type="text/javascript">
+        var selectProjectID = '@(ViewBag.SelectProjectID)';
+        $(document).ready(function () {
+            unit.init();
+            //$('#table-unit').DataTable({
+            //    responsive: true
+            //});
+        });
+    </script>
+
+}

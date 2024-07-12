@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Transfer Payment";
+    ViewBag.Active = "TransferPayment";
+    Layout = "~/Views/Shared/_LayoutSitePage.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">@ViewData["Title"]</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Search
+            </div>
+            <div class="panel-body">
+                <form id="form-search" autocomplete="off">
+                    <partial name="Partial_Search" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading " style="display:flex;">
+                <div class="card-title">
+                    <h5>Payment List</h5>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive" id="partial-list">
+                    <partial name="Partial_List" />
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div id="partial-payment-modal"></div>
+@section Scripts{
+    <script src="~/js/pages/transfer-payment.js" asp-append-version="true" type="text/javascript"></script>
+    <script>
+        let selectProjectID = '@(ViewBag.SelectProjectID)';
+        const verify = @Constant.Ext.PAYMENT_VERIFY_STATUS_VERIFY;
+        const approve = @Constant.Ext.PAYMENT_VERIFY_STATUS_APPROVE;
+        const fail = @Constant.Ext.PAYMENT_VERIFY_STATUS_FAIL;
+        $(document).ready(function () {
+            transfer.init();
+        });
+    </script>
+}

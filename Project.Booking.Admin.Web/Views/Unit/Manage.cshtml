@@ -1,0 +1,35 @@
+﻿@model UnitViewModel
+@{
+    ViewData["Title"] = "Unit Management";
+    ViewBag.Active = "Unit";
+    Layout = "~/Views/Shared/_LayoutSitePage.cshtml";    
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">@ViewData["Title"]</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                @ViewData["Title"]
+            </div>
+            <div id="div-frm-unit">
+                <partial name="Partial_Unit_Form" model="Model" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/pages/unit.js" asp-append-version="true" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            unit.initManage();
+        });
+    </script>
+}
+
+
+

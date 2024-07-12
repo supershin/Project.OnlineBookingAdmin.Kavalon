@@ -1,0 +1,20 @@
+﻿<div class="row">
+    <label class="col-lg-1 control-label">Project</label>
+    <div class="col-lg-4">
+        <select name="ProjectID" id="ProjectID" class="form-control">
+            @foreach (var item in (List<SelectListItem>)ViewBag.ProjectSelectList)
+            {
+                <option value="@item.Value">@item.Text</option>
+            }
+        </select>
+    </div>
+    <div class="col-lg-2">
+        <select name="StatusID" class="form-control" asp-items="@(ViewBag.VerifyStatusList as List<SelectListItem>)"></select>
+    </div>
+    <div class="col-lg-3">
+        <input name="SearchStr" type="text" class="form-control" placeholder="search...name ,email" />
+    </div>
+    <div class="col-lg-2">
+        <input id="btn-search" type="submit" class="btn btn-info" value="Search" />        
+    </div>
+</div>

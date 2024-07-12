@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PaymentViewModel>
+<div class="table-responsive">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>Description</th>
+                <th >Status</th>
+                <th>Failed Message</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    @if (item.PaymentCredit != null)
+                    {
+                        var statusClass = (item.PaymentCredit.Status.Equals(Constant.OmiseChargeStatus.SUCCESSFUL)) ? "btn-success"
+                                       : (item.PaymentCredit.Status.Equals(Constant.OmiseChargeStatus.FAILED)) ? "btn-danger"
+                                       : (item.PaymentCredit.Status.Equals(Constant.OmiseChargeStatus.PENDDING)) ? "btn-warning"
+                                       : "btn-default";
+                        <tr>
+                            <td>@item.PaymentNo</td>
+                            <td>@item.PaymentDate.ToStringDateTime()</td>
+                            <td>@item.PaymentTypeName</td>
+                            <td>@(Convert.ToDecimal(item.PaymentCredit.Amount / 100).ToStringNumber())</td>
+                            <td>@item.PaymentCredit.PaymentDesciption</td>
+                            <td><button class="btn btn-xs @(statusClass)" style="width:75px;"> @item.PaymentCredit.Status</button></td>
+                            <td>@item.PaymentCredit.FailureMessage</td>
+                        </tr>
+                    }
+                    else
+                    {
+                        <tr><td colspan="7" align="center">ไม่มีรายการชำระเงิน</td></tr>
+                    }
+                }
+
+            }
+            else
+            {
+                <tr><td colspan="7" align="center">ไม่มีรายการชำระเงิน</td></tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+

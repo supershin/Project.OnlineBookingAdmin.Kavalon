@@ -1,0 +1,110 @@
+﻿@model BookingViewModel
+@{ 
+
+    var bookingStatusStyle = "color:white;background-color:" + Model.BookingStatusColor + ";width:120px;";
+}
+<form id="frm-booking" method="post" autocomplete="off">
+    <div class="panel-body">
+        <input type="hidden" asp-for="BookingID" />
+        <input type="hidden" asp-for="UnitID" />
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Project Name</label>
+            <div class="col-lg-8">
+                <input asp-for="ProjectName" class="form-control" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Unit Code</label>
+            <div class="col-lg-3">
+                <input asp-for="UnitCode" class="form-control" readonly />
+            </div>
+            <label class="col-lg-2 text-right control-label">Unit Type</label>
+            <div class="col-lg-3">
+                <input asp-for="UnitTypeName" class="form-control" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Selling Price</label>
+            <div class="col-lg-3">
+                <input asp-for="SellingPrice" class="form-control" readonly value="@Model.SellingPrice.ToStringNumber()" />
+            </div>
+            <label class="col-lg-2 text-right control-label">Booking Amount</label>
+            <div class="col-lg-3">
+                <input asp-for="BookingAmount" class="form-control" readonly value="@Model.BookingAmount.ToStringNumber()" />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Discount</label>
+            <div class="col-lg-3">
+                <input asp-for="Discount" class="form-control" readonly value="@Model.Discount.ToStringNumber()" />
+            </div>
+            <label class="col-lg-2 text-right control-label">Special Price</label>
+            <div class="col-lg-3">
+                <input asp-for="SpecialPrice" class="form-control" readonly value="@Model.SpecialPrice.ToStringNumber()" />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Customer Name</label>
+            <div class="col-lg-3">
+                <input asp-for="CustomerName" class="form-control" readonly />
+            </div>
+            <label class="col-lg-2 text-right control-label">Citizen ID</label>
+            <div class="col-lg-3">
+                <input asp-for="CutizenID" class="form-control" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Mobile</label>
+            <div class="col-lg-3">
+                <input asp-for="CustomerMobile" class="form-control" readonly />
+            </div>
+            <label class="col-lg-2 text-right control-label">Email</label>
+            <div class="col-lg-3">
+                <input asp-for="CustomerEmail" class="form-control" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Booking Number</label>
+            <div class="col-lg-3">
+                <input asp-for="BookingNumber" class="form-control" readonly />
+            </div>
+            <label class="col-lg-2 text-right control-label">Booking Date</label>
+            <div class="col-lg-3">
+                <input type="text" asp-for="BookingDate" class="form-control" readonly value="@Model.BookingDate.ToStringDateTime()" />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Payment Due Date</label>
+            <div class="col-lg-3">
+                <input type="text" asp-for="PaymentDueDate" class="form-control" readonly value="@Model.PaymentDueDate.ToStringDateTime()" />
+            </div>
+            <label class="col-lg-2 text-right control-label">Cancel Date</label>
+            <div class="col-lg-3">
+                <input type="text" asp-for="CancelDate" class="form-control" readonly value="@Model.CancelDate.ToStringDateTime()" />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Booking Status</label>
+            <div class="col-lg-3">
+                <button type="button" class="btn btn-default" style="@bookingStatusStyle">@Model.BookingStatusName</button>
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(ViewBag.ErrorMsg))
+        {
+            <div class="form-group text-center">
+                <div class="alert alert-danger">@ViewBag.ErrorMsg</div>
+            </div>
+        }
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a asp-controller="Booking" asp-action="Index" class="btn btn-default">Back</a>
+                @if (Model.BookingStatusID != Constant.BookingStatus.CANCEL)
+                {
+                    <input type="submit" class="btn btn-danger" value="Cancel Booking !!!" />
+                }
+            </div>
+        </div>
+    </div>
+</form>

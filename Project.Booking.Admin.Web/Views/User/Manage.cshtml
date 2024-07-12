@@ -1,0 +1,98 @@
+﻿@model Project.Booking.Admin.Model.UserProfile
+@{
+    ViewData["Title"] = "User Manage";
+    Layout = "~/Views/Shared/_LayoutSitePage.cshtml";
+    ViewBag.Active = "User";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">@ViewData["Title"]</h3>
+    </div>
+</div>
+<div class="row">    
+        <div class="col-lg-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    @ViewData["Title"]
+                </div>
+                <form id="frm-user" method="post" action="@Url.Action("SaveUser","User")" >
+                    <input type="hidden" asp-for="ID" />
+                    <div class="panel-body">
+                        <div class="row">
+                            <label class="col-lg-2 text-right control-label">First Name</label>
+                            <div class="col-lg-3">
+                                <input asp-for="FirstName" class="form-control" />
+                            </div>
+                            <label class="col-lg-2 text-right control-label">Last Name</label>
+                            <div class="col-lg-3">
+                                <input asp-for="LastName" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-lg-2 text-right control-label">Username / Email</label>
+                            <div class="col-lg-3">
+                                <input type="email" asp-for="Username" class="form-control" />
+                            </div>
+                            <label class="col-lg-2 text-right control-label">Mobile</label>
+                            <div class="col-lg-3">
+                                <input asp-for="Mobile" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-lg-2 text-right control-label">Department</label>
+                            <div class="col-lg-3">
+                                <select asp-for="DepartmentID" class="form-control">
+                                    @foreach (var item in (List<SelectListItem>)ViewBag.DepartmentSelectList)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                </select>
+                            </div>
+                            <label class="col-lg-2 text-right control-label">Role</label>
+                            <div class="col-lg-3">
+                                <select asp-for="RoleID" class="form-control">
+                                    @foreach (var item in (List<SelectListItem>)ViewBag.RoleSelectList)
+                                    {
+                                        <option value="@item.Value">@item.Text</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <label class="col-lg-2 text-right control-label">Password</label>
+                            <div class="col-lg-3">
+                                <input type="password" asp-for="Password" class="form-control"
+                                       data-bv-identical="true"
+                                       data-bv-identical-field="ConfirmPassword" />
+                            </div>
+                            <label class="col-lg-2 text-right control-label">Confitm Password</label>
+                            <div class="col-lg-3">
+                                <input type="password" asp-for="ConfirmPassword" class="form-control"
+                                       data-bv-identical="true"
+                                       data-bv-identical-field="Password" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <a class="btn btn-default" asp-action="Index">Back</a>
+                                <input id="btn-reset" type="reset" class="btn btn-info" value="Reset" />
+                                <input type="submit" class="btn btn-success" value="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>    
+</div>
+
+@section scripts{
+    <script src="~/js/pages/user.js" asp-append-version="true" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            user.init();
+        });
+    </script>
+}

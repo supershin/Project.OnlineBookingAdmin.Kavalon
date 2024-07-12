@@ -1,0 +1,100 @@
+﻿@using Project.Booking.Admin.Constants;
+@model UnitViewModel
+@{
+    var setReadOnly = (Model.UnitStatusID != Constant.UnitStatus.CLOSE) ? "readonly" : "";
+}
+<form id="frm-unit" method="post" autocomplete="off">
+    <div class="panel-body">
+        <input type="hidden" asp-for="ID" />
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Project Name</label>
+            <div class="col-lg-8">
+                <input asp-for="ProjectName"  class="form-control" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Unit Code</label>
+            <div class="col-lg-3">
+                <input asp-for="UnitCode" class="form-control" readonly />
+            </div>
+            <label class="col-lg-2 text-right control-label">Unit Type</label>
+            <div class="col-lg-3">
+                <input asp-for="ModelTypeName" class="form-control" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Build</label>
+            <div class="col-lg-3">
+                <input asp-for="BuildName" class="form-control" readonly />
+            </div>
+            <label class="col-lg-2 text-right control-label">Floor</label>
+            <div class="col-lg-3">
+                <input asp-for="FloorName" class="form-control" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Area</label>
+            <div class="col-lg-3">
+                <input asp-for="Area" class="form-control" readonly />
+            </div>
+            <label class="col-lg-2 text-right control-label">Model Type</label>
+            <div class="col-lg-3">
+                <input asp-for="UnitTypeName" class="form-control" readonly />
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Area Inc.</label>
+            <div class="col-lg-3">
+                <input asp-for="AreaIncrease" class="form-control" readonly />
+            </div>            
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Selling Price</label>
+            <div class="col-lg-3">
+                <input asp-for="SellingPrice" class="integer form-control" area=@setReadOnly  value="@Model.SellingPrice.ToStringNumber()"/>
+                <span class="text-danger" asp-validation-for="SellingPrice"></span>
+            </div>
+            <label class="col-lg-2 text-right control-label">Discount</label>
+            <div class="col-lg-3">
+                <input asp-for="Discount" class="integer form-control" area=@setReadOnly value="@Model.Discount.ToStringNumber()"/>
+                <span class="text-danger" asp-validation-for="Discount"></span>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Special Price</label>
+            <div class="col-lg-3">
+                <input asp-for="SpecialPrice" class="integer form-control" area=@setReadOnly value="@Model.SpecialPrice.ToStringNumber()" />
+                <span class="text-danger" asp-validation-for="SpecialPrice"></span>
+            </div>
+            <label class="col-lg-2 text-right control-label">Booking Amount</label>
+            <div class="col-lg-3">
+                <input asp-for="BookingAmount" class="integer form-control" area=@setReadOnly value="@Model.BookingAmount.ToStringNumber()" />
+                <span class="text-danger" asp-validation-for="BookingAmount"></span>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-lg-2 text-right control-label">Unit Status</label>
+            <div class="col-lg-3">
+                <select asp-for="UnitStatusID" class="integer form-control" asp-items="ViewBag.UnitStatusSelectList"></select>
+                <span asp-validation-for="UnitStatusID" class="text-danger"></span>
+            </div>
+        </div>
+        @if (!string.IsNullOrEmpty(ViewBag.ErrorMsg))
+        {
+            <div class="form-group text-center">
+                <div class="alert alert-danger">@ViewBag.ErrorMsg</div>
+            </div>
+        }
+    </div>
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <a asp-controller="Unit" asp-action="Index" class="btn btn-default">Back</a>
+                <input type="submit" class="btn btn-success" value="Submit" />
+            </div>
+        </div>
+    </div>
+</form>
+@*@section scripts{
+        @{ await Html.PartialAsync("_ValidationScriptsPartial");}
+    }*@

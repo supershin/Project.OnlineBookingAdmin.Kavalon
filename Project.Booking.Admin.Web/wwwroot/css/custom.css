@@ -1,0 +1,56 @@
+﻿
+.control-label {
+    padding-top: 7px;
+}
+
+form div.panel-body div.row {
+    margin-bottom: 8px;
+}
+
+small[data-bv-validator="notEmpty"], small[data-bv-validator="identical"], small[data-bv-validator="emailAddress"] {
+    color: #ea1313;
+}
+
+.text-danger {
+    color: #e61a16 !important;
+}
+
+.form-control {
+    border: 1px solid #d8ee9d;
+}
+
+.col-auto {
+    flex: 0 0 auto;
+    width: auto;
+}
+.ml-auto {
+    -webkit-margin-start: auto !important;
+    margin-inline-start: auto !important;
+}
+.required:after {
+    content: "*";
+    color: red;
+    margin-left:5px;
+}
+.badge-success {
+    background-color : limegreen !important;
+}
+
+.badge-warning {
+    background-color: orange !important;
+}
+
+.badge-danger {
+    background-color: red !important;
+}
+.sp-title {
+    flex-grow: 1;
+    display: flex;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+.sp-payment {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

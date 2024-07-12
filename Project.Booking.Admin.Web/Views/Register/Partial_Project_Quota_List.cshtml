@@ -1,0 +1,39 @@
+﻿@model Project.Booking.Admin.Model.RegisterViewModel
+<div class="panel panel-warning">
+    <div class="panel-heading" style="display:flex;">
+        <div class="card-title">
+            <h5>Project Quota</h5>
+        </div>
+        <div class="col-auto ml-auto d-print-none">
+            <button data-action="edit-quota" class="btn btn-primary">Create Quota</button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            @foreach (var item in Model.ProjectQuotas)
+            {
+                <div class="col-md-4">
+                    <div class="card card-margin">
+                        <div class="card-body pt-2" style="padding:15px;">
+                            <div class="widget-49">
+                                <div class="widget-49-title-wrapper" style="margin-bottom:7px;">
+                                    <div class="widget-49-meeting-info">
+                                        <span class="widget-49-pro-title">@item.ProjectName</span>
+                                    </div>
+                                </div>
+                                <div class="widget-49-title-wrapper" style="justify-content:space-between;">
+                                    <div class="widget-49-date-primary">
+                                        <span class="widget-49-date-day">@($"Unit Booked {item.UseQuota} of {item.Quota}")</span>
+                                    </div>
+                                    <div class="widget-49-meeting-action" style="padding:5px">
+                                        <button data-action="edit-quota" data-id="@item.ID" class="btn btn-sm btn-warning btn-flash-border-primary">Edit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }           
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@model List<UnitViewModel>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover " id="table-unit">
+        <thead>
+            <tr>
+                <th>Unit Code</th>
+                <th class="text-center">Status</th>
+                <th>Unit Type</th>
+                <th>Build</th>
+                <th>Floor</th>
+                <th>Area</th>
+                <th>Selling Price</th>
+                <th>Discount</th>
+                <th>Special Price</th>
+                <th>Booking Amount</th>
+                <th>Update Date</th>
+                <th>Update By</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var unitStatusStyle = (item.UnitStatusID.Equals(Constant.UnitStatus.AVAILABLE)
+                                        || item.UnitStatusID.Equals(Constant.UnitStatus.CLOSE)) ?
+                                        "color:black;background-color:" + item.UnitStatusColor + ";":
+                                        "color:white;background-color:" + item.UnitStatusColor + ";";
+
+            <tr>
+                <td>@item.UnitCode</td>
+                <td align="center"><button class="btn btn-xs btn-default" style="@(unitStatusStyle)width:75px;">@item.UnitStatusName</button></td>
+                <td>@item.UnitTypeName</td>
+                <td>@item.BuildName</td>
+                <td>@item.FloorName</td>
+                <td>@item.Area</td>
+                <td>@item.SellingPrice.AsDecimal().ToStringNumber()</td>
+                <td>@item.Discount.AsDecimal().ToStringNumber()</td>
+                <td>@item.SpecialPrice.AsDecimal().ToStringNumber()</td>
+                <td>@item.BookingAmount.AsDecimal().ToStringNumber()</td>
+                <td>@item.UserUpdateDate.ToStringDateTime()</td>
+                <td>@item.UserUpdateByName</td>
+                <td><a asp-controller="Unit" asp-action="Manage" asp-route-id="@item.ID" class="btn btn-xs btn-warning">Edit</a></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

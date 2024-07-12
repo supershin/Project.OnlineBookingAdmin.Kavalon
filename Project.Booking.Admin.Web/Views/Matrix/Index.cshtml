@@ -1,0 +1,68 @@
+﻿@model Project.Booking.Admin.Model.MatrixView
+@inject IOptions<ApplicationSetting> config
+@using Microsoft.Extensions.Options;
+@using Project.Booking.Admin.Constants;
+@{
+    Layout = null;
+    var userProfile = Context.User.GetUserProfile();
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/Images/logo_2020.jpg" type="image/x-icon" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/startmin-master/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="~/lib/jquery.growl/jquery.growl.css" rel="stylesheet" type="text/css">
+    <link href="~/css/matrixcss.css?ver=@DateTime.Now.Ticks.ToString()" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/Content/matrix/style.css?ver=@DateTime.Now.Ticks.ToString()" />*@
+    <title>Matrix</title>
+
+    <style>
+        html, body {
+            background-image: url(@($"{ViewBag.baseUrl}Images/BG.jpg"));
+            background-color:lightgray;
+            font-size:14px;
+        }
+        .project {
+            background: url(@($"{ViewBag.baseUrl}Images/Top-BG.jpg"));
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var baseUrl = '@(ViewBag.baseUrl)';
+    </script>
+    <div class="outer">
+        <partial name="Partial_Matrix_List" model="@Model" />
+    </div>
+    <div id="div-unit-modal">
+
+    </div>
+    <!-- jQuery -->
+    <script src="~/startmin-master/js/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script src="~/lib/jquery.growl/jquery.growl.js"></script>
+    <script src="~/js/signalr/jquery.signalR-2.4.2.js"></script>
+    <script src="~/js/app-signalr.js" asp-append-version="true" type="text/javascript"></script>
+    <script src="~/js/app.js" asp-append-version="true" type="text/javascript"></script>
+    <script src="~/js/pages/matrix.js" asp-append-version="true" type="text/javascript"></script>
+    <script type="text/javascript">
+        var ChatServerUrl = "@config.Value.SignalRConfig.Url";
+        $(document).ready(function () {
+            appSignalR.init();
+            matrix.init();
+        });
+    </script>
+</body>
+</html>

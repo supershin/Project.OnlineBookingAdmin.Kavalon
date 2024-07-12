@@ -1,0 +1,34 @@
+﻿@model IEnumerable<UserProfile>
+<div class="table-responsive">
+    <table class="table table-striped table-bordered table-hover " id="table-user">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Last Name</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Email</th>
+                <th>Mobile</th>
+                <th>Update Date</th>
+                <th>Update By</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.DepartmentName</td>
+                    <td>@item.RoleName</td>
+                    <td>@item.Email</td>
+                    <td>@item.Mobile</td>
+                    <td>@item.UpdateDate.ToStringDateTime()</td>
+                    <td>@item.UpdateByName</td>
+                    <td><a class="btn btn-xs btn-warning" asp-action="Manage" asp-route-id="@item.ID">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>  

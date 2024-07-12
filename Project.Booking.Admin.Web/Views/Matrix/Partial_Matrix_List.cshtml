@@ -1,0 +1,58 @@
+﻿@model MatrixView
+@{ 
+    var close = Constant.UnitStatus.CLOSE;
+    var available = Constant.UnitStatus.AVAILABLE;
+    var booking = Constant.UnitStatus.BOOKING;
+    var payment = Constant.UnitStatus.PAYMENT;
+    var contract = Constant.UnitStatus.CONTRACT;
+}
+<div class="project">
+    @Model.ProjectName
+</div>
+@foreach (var build in Model.BuildList)
+{
+    var roomMax = build.RoomMax;
+    var floorMax = build.FloorMax;
+    <div class="inner">
+        <table class="display" border="0">        
+            @foreach (var rowNo in build.MatrixConfigs.Select(e => e.RowNo).Distinct())
+            {
+                <tr>
+                    @foreach (var config in build.MatrixConfigs.Where(e => e.RowNo == rowNo).OrderBy(e => e.LineOrder))
+                    {
+                        <td colspan="@config.ColSpan">
+                            <div style="@config.Style">
+                                @config.Text
+                            </div>
+                        </td>
+                    }
+                </tr>
+            }
+            @foreach (var floor in build.FloorList)
+            {
+                var floorName = (floor.FloorName == 13) ? "12A" : floor.FloorName.ToString();
+                <tr>
+                    <td><div class="floor">@($"fl. {floorName}")</div></td>
+                    @foreach (var unit in floor.UnitList)
+                    {
+                        var color = unit.UnitStatusColor;
+                        if (unit.UnitStatusID == available)
+                        {
+                            color = "white";
+                        }
+
+                        var classStatus = "";
+                        classStatus = (unit.ID == Guid.Empty || unit.UnitStatusID != available) ? "unit-empty" : "";
+                        var actionUnit = (unit.ID != Guid.Empty) ? "unit-item" : "";
+                        <td>
+                            <div id="matrix-@unit.ID" unit-id="@unit.ID" data-action="@actionUnit" class="unit @(classStatus)" style="background-color:@(color);">
+                                @(unit.Room.ToString("00"))
+                                @*@(unit.UnitCode)*@
+                            </div>
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    </div>
+}

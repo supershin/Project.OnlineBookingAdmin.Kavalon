@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\NewFolder\**" />
+    <Content Remove="wwwroot\NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
+    <None Remove="wwwroot\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\logo_2020.jpg" />
+    <None Include="wwwroot\lib\bootstrapvalidator\bootstrapvalidator.min.js" />
+    <None Include="wwwroot\lib\jquery-ui-theme\flick\external\jquery\jquery.js" />
+    <None Include="wwwroot\lib\jquery-ui-theme\flick\jquery-ui.js" />
+    <None Include="wwwroot\lib\jquery-ui-theme\flick\jquery-ui.min.js" />
+    <None Include="wwwroot\lib\jquery.growl\jquery.growl.js" />
+    <None Include="wwwroot\lib\selectize.js-master\js\selectize.js" />
+    <None Include="wwwroot\lib\selectize.js-master\js\selectize.min.js" />
+    <None Include="wwwroot\lib\selectize.js-master\js\standalone\selectize.js" />
+    <None Include="wwwroot\lib\selectize.js-master\js\standalone\selectize.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetCore.NPOI" Version="1.2.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Project.Booking.Admin.Business\Project.Booking.Admin.Business.csproj" />
+    <ProjectReference Include="..\Project.Booking.Admin.Data\Project.Booking.Admin.Data.csproj" />
+    <ProjectReference Include="..\Project.Booking.Admin.Model\Project.Booking.Admin.Model.csproj" />
+    <ProjectReference Include="..\Project.Booking.Admin\Project.Booking.Admin.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\js\signalr\" />
+  </ItemGroup>
+
+</Project>
