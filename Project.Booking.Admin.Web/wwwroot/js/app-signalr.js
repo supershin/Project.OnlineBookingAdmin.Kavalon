@@ -6,29 +6,29 @@ var ChatProxy;
 var appSignalR = {
     init: function () {
 
-        //This will hold the connection to the signalr hub   
-        SignalrConnection = $.hubConnection(ChatServerUrl, {
-            useDefaultPath: false
-        });
-        ChatProxy = SignalrConnection.createHubProxy('NotifyHub');
+        ////This will hold the connection to the signalr hub   
+        //SignalrConnection = $.hubConnection(ChatServerUrl, {
+        //    useDefaultPath: false
+        //});
+        //ChatProxy = SignalrConnection.createHubProxy('NotifyHub');
 
-        //receive data
-        ChatProxy.on("sendUnitStatus", function (obj) {
-            //$.growl.notice({
-            //    title: obj.UnitCode + " : สถานะ " + obj.UnitStatusName,
-            //    message: obj.ProjectName,
-            //    duration: 7000, location: 'tr'
-            //});
-            app-appSignalR.changeUnitStatusColor(obj)            
-        });
+        ////receive data
+        //ChatProxy.on("sendUnitStatus", function (obj) {
+        //    //$.growl.notice({
+        //    //    title: obj.UnitCode + " : สถานะ " + obj.UnitStatusName,
+        //    //    message: obj.ProjectName,
+        //    //    duration: 7000, location: 'tr'
+        //    //});
+        //    app-appSignalR.changeUnitStatusColor(obj)            
+        //});
 
-        //connecting the client to the signalr hub   
-        SignalrConnection.start().done(function () {
-            console.log("Connected to Signalr Server");
-        })
-            .fail(function () {                
-                appSignalR.reconnect();
-            })
+        ////connecting the client to the signalr hub   
+        //SignalrConnection.start().done(function () {
+        //    console.log("Connected to Signalr Server");
+        //})
+        //    .fail(function () {                
+        //        appSignalR.reconnect();
+        //    })
     },
     reconnect: function () {
         SignalrConnection.start().done(function () {

@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Prebook";
+    ViewBag.Active = "Prebook";
+    Layout = "~/Views/Shared/_LayoutSitePage.cshtml";
+}
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">@ViewData["Title"]</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                Search
+            </div>
+            <div class="panel-body">
+                <form id="form-search" autocomplete="off">
+                    <partial name="Partial_Search" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-warning">
+            <div class="panel-heading " style="display:flex;">
+                <div class="card-title">
+                    <h5>Prebook List</h5>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="table-responsive" id="partial-list">
+                    <partial name="Partial_List" />
+                </div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<partial name="Partial_Prebook_Modal" />
+@section Scripts{
+    <script src="~/js/pages/prebook.js" asp-append-version="true" type="text/javascript"></script>
+    <script>
+        let selectProjectID = '@(ViewBag.SelectProjectID)';       
+        $(document).ready(function () {
+            prebook.init();
+        });
+    </script>
+}
