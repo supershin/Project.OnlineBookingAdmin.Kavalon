@@ -46,6 +46,8 @@ namespace Project.Booking.Admin.Data.Models
         public bool? FlagActive { get; set; }
         public bool? IsOnlineBooking { get; set; }
         [Column(TypeName = "datetime")]
+        public DateTime? TransferPaymentExpireDate { get; set; }
+        [Column(TypeName = "datetime")]
         public DateTime? CreateDate { get; set; }
         public Guid? CreateBy { get; set; }
         [Column(TypeName = "datetime")]

@@ -1,5 +1,6 @@
 ﻿Scaffold-DbContext "Data Source=.\sqlexpress;Initial Catalog=SalekitTitle;User ID=sa;Password=P@ssw0rd" Microsoft.EntityFrameWorkCore.SqlServer -outputdir Models -context OnlineBookingDbContext -contextdir Models -DataAnnotations -UseDatabaseNames -Force
 
+Scaffold-DbContext "Data Source=10.0.10.8;Initial Catalog=OnlineBookingKavalon;User ID=kavalon;Password=kavalon@2024" Microsoft.EntityFrameWorkCore.SqlServer -outputdir Models -context OnlineBookingDbContext -contextdir Models -DataAnnotations -UseDatabaseNames -Force
 signalR javascfript client
 https://www.c-sharpcorner.com/article/creating-manual-javascript-signalr-client/
 

@@ -9,7 +9,15 @@
         </select>
     </div>
     <div class="col-lg-2">
-        <select name="StatusID" class="form-control" asp-items="@(ViewBag.VerifyStatusList as List<SelectListItem>)"></select>
+        @*<select name="StatusID" class="form-control" asp-items="@(ViewBag.VerifyStatusList as List<SelectListItem>)"></select>*@
+        <select id="select-status" multiple="multiple" style="width:100%;">
+            <option value="cheese">Cheese</option>
+            <option value="tomatoes">Tomatoes</option>
+            <option value="mozarella">Mozzarella</option>
+            <option value="mushrooms">Mushrooms</option>
+            <option value="pepperoni">Pepperoni</option>
+            <option value="onions">Onions</option>
+        </select>
     </div>
     <div class="col-lg-3">
         <input name="SearchStr" type="text" class="form-control" placeholder="search...name ,email" />

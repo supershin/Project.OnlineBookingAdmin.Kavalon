@@ -18,6 +18,7 @@ namespace Project.Booking.Admin.Data.Models
             tr_ProjectModelType = new HashSet<tr_ProjectModelType>();
             tr_ProjectResource = new HashSet<tr_ProjectResource>();
             tr_ProjectTransferPayment = new HashSet<tr_ProjectTransferPayment>();
+            ts_Payment_Transfer = new HashSet<ts_Payment_Transfer>();
         }
 
         [Key]
@@ -47,5 +48,7 @@ namespace Project.Booking.Admin.Data.Models
         public virtual ICollection<tr_ProjectResource> tr_ProjectResource { get; set; }
         [InverseProperty("Resource")]
         public virtual ICollection<tr_ProjectTransferPayment> tr_ProjectTransferPayment { get; set; }
+        [InverseProperty("Resource")]
+        public virtual ICollection<ts_Payment_Transfer> ts_Payment_Transfer { get; set; }
     }
 }

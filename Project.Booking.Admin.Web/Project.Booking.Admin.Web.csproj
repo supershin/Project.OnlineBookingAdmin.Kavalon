@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <None Include="wwwroot\Images\logo_2020.jpg" />
+    <None Include="wwwroot\lib\bootstrap-multiselect-dropdown\js\bootstrap-multiselect.js" />
+    <None Include="wwwroot\lib\bootstrap-multiselect-dropdown\less\bootstrap-multiselect.less" />
     <None Include="wwwroot\lib\bootstrapvalidator\bootstrapvalidator.min.js" />
     <None Include="wwwroot\lib\jquery-ui-theme\flick\external\jquery\jquery.js" />
     <None Include="wwwroot\lib\jquery-ui-theme\flick\jquery-ui.js" />

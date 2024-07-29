@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Project.Booking.Admin.Data.Models
 {
-    [Index(nameof(Username), Name = "NonClusteredIndex-20210909-142758", IsUnique = true)]
-    [Index(nameof(Email), Name = "NonClusteredIndex-20210909-142816", IsUnique = true)]
     public partial class tm_User
     {
         public tm_User()

@@ -17,12 +17,22 @@ namespace Project.Booking.Admin.Data.Models
         {
         }
 
+        public virtual DbSet<temp_agent> temp_agent { get; set; }
+        public virtual DbSet<temp_agent_30> temp_agent_30 { get; set; }
+        public virtual DbSet<temp_agent_31> temp_agent_31 { get; set; }
+        public virtual DbSet<temp_agent_heritage> temp_agent_heritage { get; set; }
+        public virtual DbSet<temp_allow_book> temp_allow_book { get; set; }
         public virtual DbSet<temp_annotation> temp_annotation { get; set; }
         public virtual DbSet<temp_minburi> temp_minburi { get; set; }
         public virtual DbSet<temp_model_type_resource> temp_model_type_resource { get; set; }
         public virtual DbSet<temp_pricelist> temp_pricelist { get; set; }
+        public virtual DbSet<temp_quota_30> temp_quota_30 { get; set; }
+        public virtual DbSet<temp_quota_31> temp_quota_31 { get; set; }
         public virtual DbSet<temp_resource_project_gallery> temp_resource_project_gallery { get; set; }
+        public virtual DbSet<temp_reward> temp_reward { get; set; }
         public virtual DbSet<temp_unit> temp_unit { get; set; }
+        public virtual DbSet<temp_unit_email> temp_unit_email { get; set; }
+        public virtual DbSet<temp_unit_vip> temp_unit_vip { get; set; }
         public virtual DbSet<tm_Annotation> tm_Annotation { get; set; }
         public virtual DbSet<tm_BU> tm_BU { get; set; }
         public virtual DbSet<tm_BookingStatus> tm_BookingStatus { get; set; }
@@ -53,6 +63,7 @@ namespace Project.Booking.Admin.Data.Models
         public virtual DbSet<tr_ProjectGallery> tr_ProjectGallery { get; set; }
         public virtual DbSet<tr_ProjectGalleryResource> tr_ProjectGalleryResource { get; set; }
         public virtual DbSet<tr_ProjectModelType> tr_ProjectModelType { get; set; }
+        public virtual DbSet<tr_ProjectQuota> tr_ProjectQuota { get; set; }
         public virtual DbSet<tr_ProjectRegisterQuota> tr_ProjectRegisterQuota { get; set; }
         public virtual DbSet<tr_ProjectResource> tr_ProjectResource { get; set; }
         public virtual DbSet<tr_ProjectSpecialPromotion> tr_ProjectSpecialPromotion { get; set; }
@@ -61,16 +72,29 @@ namespace Project.Booking.Admin.Data.Models
         public virtual DbSet<tr_UnitSpecialPromotion> tr_UnitSpecialPromotion { get; set; }
         public virtual DbSet<tr_UnitVIP> tr_UnitVIP { get; set; }
         public virtual DbSet<ts_Booking> ts_Booking { get; set; }
+        public virtual DbSet<ts_Booking_20231113> ts_Booking_20231113 { get; set; }
+        public virtual DbSet<ts_Booking_VIP> ts_Booking_VIP { get; set; }
         public virtual DbSet<ts_Order> ts_Order { get; set; }
         public virtual DbSet<ts_OrderDetail> ts_OrderDetail { get; set; }
         public virtual DbSet<ts_Payment> ts_Payment { get; set; }
         public virtual DbSet<ts_Payment_Credit> ts_Payment_Credit { get; set; }
+        public virtual DbSet<ts_Payment_Transfer> ts_Payment_Transfer { get; set; }
         public virtual DbSet<ts_Unitbooking_History> ts_Unitbooking_History { get; set; }
-      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Thai_CI_AS");
+
+            modelBuilder.Entity<temp_allow_book>(entity =>
+            {
+                entity.Property(e => e.ID).ValueGeneratedNever();
+
+                entity.Property(e => e.Agency).IsUnicode(false);
+
+                entity.Property(e => e.Email).IsUnicode(false);
+
+                entity.Property(e => e.Name).IsUnicode(false);
+            });
 
             modelBuilder.Entity<temp_annotation>(entity =>
             {
@@ -79,6 +103,39 @@ namespace Project.Booking.Admin.Data.Models
 
             modelBuilder.Entity<temp_pricelist>(entity =>
             {
+                entity.Property(e => e.UnitCode).IsUnicode(false);
+
+                entity.Property(e => e.ModelType).IsUnicode(false);
+
+                entity.Property(e => e.UnitType).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<temp_quota_30>(entity =>
+            {
+                entity.Property(e => e.Email).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<temp_quota_31>(entity =>
+            {
+                entity.Property(e => e.ID).ValueGeneratedOnAdd();
+            });
+
+            modelBuilder.Entity<temp_reward>(entity =>
+            {
+                entity.Property(e => e.Password).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<temp_unit_email>(entity =>
+            {
+                entity.Property(e => e.Email).IsUnicode(false);
+
+                entity.Property(e => e.UnitCode).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<temp_unit_vip>(entity =>
+            {
+                entity.Property(e => e.Email).IsUnicode(false);
+
                 entity.Property(e => e.UnitCode).IsUnicode(false);
             });
 
@@ -135,6 +192,10 @@ namespace Project.Booking.Admin.Data.Models
                 entity.Property(e => e.OmisePublicKey).IsUnicode(false);
 
                 entity.Property(e => e.OmiseSecurityKey).IsUnicode(false);
+
+                entity.Property(e => e.TransferAccountNo).IsUnicode(false);
+
+                entity.Property(e => e.TransferBank).IsUnicode(false);
             });
 
             modelBuilder.Entity<tm_Department>(entity =>
@@ -600,8 +661,23 @@ namespace Project.Booking.Admin.Data.Models
                     .HasConstraintName("FK_tr_ProjectModelType_tm_Resource");
             });
 
+            modelBuilder.Entity<tr_ProjectQuota>(entity =>
+            {
+                entity.Property(e => e.ID).ValueGeneratedNever();
+
+                entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.FlagActive).HasDefaultValueSql("((1))");
+
+                entity.Property(e => e.Name).IsUnicode(false);
+
+                entity.Property(e => e.UpdateDate).HasDefaultValueSql("(getdate())");
+            });
+
             modelBuilder.Entity<tr_ProjectRegisterQuota>(entity =>
             {
+                entity.Property(e => e.CancelRemark).IsUnicode(false);
+
                 entity.Property(e => e.CreateDate).HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.FlagActive).HasDefaultValueSql("((1))");
@@ -612,6 +688,11 @@ namespace Project.Booking.Admin.Data.Models
                     .WithMany(p => p.tr_ProjectRegisterQuota)
                     .HasForeignKey(d => d.ProjectID)
                     .HasConstraintName("FK_tr_ProjectRegisterQuota_tm_Project");
+
+                entity.HasOne(d => d.ProjectQuota)
+                    .WithMany(p => p.tr_ProjectRegisterQuota)
+                    .HasForeignKey(d => d.ProjectQuotaID)
+                    .HasConstraintName("FK_tr_ProjectRegisterQuota_tr_ProjectQuota");
 
                 entity.HasOne(d => d.Register)
                     .WithMany(p => p.tr_ProjectRegisterQuota)
@@ -769,6 +850,34 @@ namespace Project.Booking.Admin.Data.Models
                     .HasConstraintName("FK_ts_Booking_tm_User");
             });
 
+            modelBuilder.Entity<ts_Booking_20231113>(entity =>
+            {
+                entity.Property(e => e.BookingNumber).IsUnicode(false);
+
+                entity.Property(e => e.CustomerCitizenID).IsUnicode(false);
+
+                entity.Property(e => e.CustomerEmail).IsUnicode(false);
+
+                entity.Property(e => e.CustomerMobile).IsUnicode(false);
+            });
+
+            modelBuilder.Entity<ts_Booking_VIP>(entity =>
+            {
+                entity.Property(e => e.ID).ValueGeneratedNever();
+
+                entity.Property(e => e.BookingNumber).IsUnicode(false);
+
+                entity.Property(e => e.CustomerCitizen).IsUnicode(false);
+
+                entity.Property(e => e.CustomerEmail).IsUnicode(false);
+
+                entity.Property(e => e.CustomerMobile).IsUnicode(false);
+
+                entity.Property(e => e.Email).IsUnicode(false);
+
+                entity.Property(e => e.UnitCode).IsUnicode(false);
+            });
+
             modelBuilder.Entity<ts_Order>(entity =>
             {
                 entity.Property(e => e.ID).ValueGeneratedNever();
@@ -826,6 +935,11 @@ namespace Project.Booking.Admin.Data.Models
                     .WithMany(p => p.ts_Payment)
                     .HasForeignKey(d => d.PaymentTypeID)
                     .HasConstraintName("FK_ts_Payment_tm_Ext");
+
+                entity.HasOne(d => d.ProjectRegisterQuota)
+                    .WithMany(p => p.ts_Payment)
+                    .HasForeignKey(d => d.ProjectRegisterQuotaID)
+                    .HasConstraintName("FK_ts_Payment_tr_ProjectRegisterQuota");
             });
 
             modelBuilder.Entity<ts_Payment_Credit>(entity =>
@@ -866,6 +980,20 @@ namespace Project.Booking.Admin.Data.Models
                     .WithMany(p => p.ts_Payment_Credit)
                     .HasForeignKey(d => d.PaymentID)
                     .HasConstraintName("FK_ts_Payment_Credit_ts_Payment");
+            });
+
+            modelBuilder.Entity<ts_Payment_Transfer>(entity =>
+            {
+                entity.Property(e => e.ID).ValueGeneratedNever();
+
+                entity.Property(e => e.Hours).IsUnicode(false);
+
+                entity.Property(e => e.Minutes).IsUnicode(false);
+
+                entity.HasOne(d => d.Resource)
+                    .WithMany(p => p.ts_Payment_Transfer)
+                    .HasForeignKey(d => d.ResourceID)
+                    .HasConstraintName("FK_ts_Payment_Transfer_tm_Resource");
             });
 
             modelBuilder.Entity<ts_Unitbooking_History>(entity =>

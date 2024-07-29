@@ -8,29 +8,31 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Project.Booking.Admin.Data.Models
 {
-    public partial class tm_ModelType
+    public partial class tr_ProjectQuota
     {
-        public tm_ModelType()
+        public tr_ProjectQuota()
         {
-            tm_Unit = new HashSet<tm_Unit>();
-            tr_ProjectModelType = new HashSet<tr_ProjectModelType>();
+            tr_ProjectRegisterQuota = new HashSet<tr_ProjectRegisterQuota>();
         }
 
         [Key]
         public int ID { get; set; }
+        public Guid? ProjectID { get; set; }
         [StringLength(50)]
         public string Name { get; set; }
+        public int? Quota { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal? TotalPrice { get; set; }
+        public int? LineOrder { get; set; }
         public bool? FlagActive { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? CreateDate { get; set; }
-        public Guid? CreateBy { get; set; }
+        public Guid? CraeteBy { get; set; }
         [Column(TypeName = "datetime")]
-        public DateTime? UpdateDtae { get; set; }
+        public DateTime? UpdateDate { get; set; }
         public Guid? UpdateBy { get; set; }
 
-        [InverseProperty("ModelType")]
-        public virtual ICollection<tm_Unit> tm_Unit { get; set; }
-        [InverseProperty("ModelType")]
-        public virtual ICollection<tr_ProjectModelType> tr_ProjectModelType { get; set; }
+        [InverseProperty("ProjectQuota")]
+        public virtual ICollection<tr_ProjectRegisterQuota> tr_ProjectRegisterQuota { get; set; }
     }
 }

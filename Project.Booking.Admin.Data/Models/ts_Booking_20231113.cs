@@ -8,15 +8,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Project.Booking.Admin.Data.Models
 {
-    public partial class ts_Booking
+    [Keyless]
+    public partial class ts_Booking_20231113
     {
-        public ts_Booking()
-        {
-            ts_Payment = new HashSet<ts_Payment>();
-            ts_Unitbooking_History = new HashSet<ts_Unitbooking_History>();
-        }
-
-        [Key]
         public Guid ID { get; set; }
         public Guid? ProjectID { get; set; }
         public Guid? UnitID { get; set; }
@@ -62,25 +56,5 @@ namespace Project.Booking.Admin.Data.Models
         [Column(TypeName = "datetime")]
         public DateTime? UserUpdateDate { get; set; }
         public Guid? UserUpdateByID { get; set; }
-
-        [ForeignKey(nameof(BookingStatusID))]
-        [InverseProperty(nameof(tm_BookingStatus.ts_Booking))]
-        public virtual tm_BookingStatus BookingStatus { get; set; }
-        [ForeignKey(nameof(CustomerID))]
-        [InverseProperty(nameof(tm_Register.ts_Booking))]
-        public virtual tm_Register Customer { get; set; }
-        [ForeignKey(nameof(ProjectID))]
-        [InverseProperty(nameof(tm_Project.ts_Booking))]
-        public virtual tm_Project Project { get; set; }
-        [ForeignKey(nameof(UnitID))]
-        [InverseProperty(nameof(tm_Unit.ts_Booking))]
-        public virtual tm_Unit Unit { get; set; }
-        [ForeignKey(nameof(UserUpdateByID))]
-        [InverseProperty(nameof(tm_User.ts_Booking))]
-        public virtual tm_User UserUpdateBy { get; set; }
-        [InverseProperty("Booking")]
-        public virtual ICollection<ts_Payment> ts_Payment { get; set; }
-        [InverseProperty("Booking")]
-        public virtual ICollection<ts_Unitbooking_History> ts_Unitbooking_History { get; set; }
     }
 }

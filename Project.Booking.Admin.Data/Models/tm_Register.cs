@@ -8,8 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Project.Booking.Admin.Data.Models
 {
-    [Index(nameof(Email), Name = "NonClusteredIndex-20210810-105632", IsUnique = true)]
-    [Index(nameof(Email), Name = "NonClusteredIndex-20231030-191918", IsUnique = true)]
     public partial class tm_Register
     {
         public tm_Register()
@@ -36,6 +34,10 @@ namespace Project.Booking.Admin.Data.Models
         public string CitizenID { get; set; }
         [StringLength(200)]
         public string Password { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? AllowBookDate { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime? ActivateDate { get; set; }
         public bool? FlagActive { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? LastSignInDate { get; set; }

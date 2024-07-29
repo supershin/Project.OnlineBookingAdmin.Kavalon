@@ -25,6 +25,10 @@ namespace Project.Booking.Admin.Data.Models
         public string OmisePublicKey { get; set; }
         [StringLength(100)]
         public string OmiseSecurityKey { get; set; }
+        [StringLength(50)]
+        public string TransferBank { get; set; }
+        [StringLength(50)]
+        public string TransferAccountNo { get; set; }
         public bool? FlagActive { get; set; }
         [Column(TypeName = "datetime")]
         public DateTime? CreateDate { get; set; }

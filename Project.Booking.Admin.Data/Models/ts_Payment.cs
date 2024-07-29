@@ -18,6 +18,7 @@ namespace Project.Booking.Admin.Data.Models
         [Key]
         public Guid ID { get; set; }
         public Guid? BookingID { get; set; }
+        public int? ProjectRegisterQuotaID { get; set; }
         public int? PaymentTypeID { get; set; }
         [StringLength(50)]
         public string PaymentNo { get; set; }
@@ -37,6 +38,9 @@ namespace Project.Booking.Admin.Data.Models
         [ForeignKey(nameof(PaymentTypeID))]
         [InverseProperty(nameof(tm_Ext.ts_Payment))]
         public virtual tm_Ext PaymentType { get; set; }
+        [ForeignKey(nameof(ProjectRegisterQuotaID))]
+        [InverseProperty(nameof(tr_ProjectRegisterQuota.ts_Payment))]
+        public virtual tr_ProjectRegisterQuota ProjectRegisterQuota { get; set; }
         [InverseProperty("Payment")]
         public virtual ICollection<ts_Payment_Credit> ts_Payment_Credit { get; set; }
     }

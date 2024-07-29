@@ -3,6 +3,8 @@
     ViewBag.Active = "Prebook";
     Layout = "~/Views/Shared/_LayoutSitePage.cshtml";
 }
+<link href="~/css/pre-book-radio.css" rel="stylesheet" />
+
 <div class="row">
     <div class="col-lg-12">
         <h3 class="page-header">@ViewData["Title"]</h3>
@@ -43,7 +45,9 @@
     <!-- /.col-lg-12 -->
 </div>
 <partial name="Partial_Prebook_Modal" />
-@section Scripts{
+@section Scripts{        
+    <link href="~/lib/bootstrap-multiselect-dropdown/css/bootstrap-multiselect.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap-multiselect-dropdown/js/bootstrap-multiselect.js"></script>
     <script src="~/js/pages/prebook.js" asp-append-version="true" type="text/javascript"></script>
     <script>
         let selectProjectID = '@(ViewBag.SelectProjectID)';       
